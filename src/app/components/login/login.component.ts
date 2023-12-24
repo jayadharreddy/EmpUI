@@ -41,7 +41,7 @@ export class LoginComponent {
         this.loggedIn= true;
         console.log('not navigted');
       }else{
-        console.log("Invalid Logindata")
+        console.log("Invalid Logindata");
       }
     })
 
