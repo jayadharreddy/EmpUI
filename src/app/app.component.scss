@@ -1,0 +1,36 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-image: url('/src/assets/Screenshot_20231202_134500.png');
+  //background-size: cover;
+  //background-position: center;
+}
+
+header, footer {
+  height: 50px;
+  background-color: blue;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1; /* Ensure header/footer are on top */
+}
+
+header {
+  top: 0;
+}
+
+footer {
+  bottom: 0;
+}
+
+/* Add some space to demonstrate separation between header and footer */
+.content {
+  height: calc(100% - 20px); /* Subtract header and footer height */
+  padding-top: 70px; /* To create space between header and content */
+  padding-bottom: 10px; /* To create space between footer and content */
+}
+
+// body {
+
+// }
