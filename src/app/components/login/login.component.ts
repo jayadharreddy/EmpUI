@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationError, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,9 @@ export class LoginComponent {
   password: string = '';
   loggedIn: boolean = false;
   showPwd: boolean = false;
+  sendData: any[] = [];
 
-  constructor(private router: Router, private service: AppService) {
+  constructor(private router: Router, private service: AppService, private loginService: LoginService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationError) {
         console.error('Navigation Error:', event.error);
@@ -37,8 +39,11 @@ export class LoginComponent {
       if(response.toString() == '0'){
         console.log('Logging in...');
         // Example: navigate to a home page after successful login
-        this.router.navigate(['/app-welcome']);
         this.loggedIn= true;
+        this.sendData.push(true);
+        this.sendData.push(this.username);
+        this.loginService.setData(this.sendData);
+        this.router.navigate(['/app-welcome']);
         console.log('not navigted');
       }else{
         console.log("Invalid Logindata");

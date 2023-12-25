@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-welcome',
@@ -8,11 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WelcomeComponent {
   loggedIn: boolean= false;
-
-  constructor(private route: ActivatedRoute){}
+  uname: any;
+  constructor(private route: ActivatedRoute, private loginService: LoginService){}
 
   ngOnInit(){
-    this.loggedIn= true;
+    this.loginService.getData().subscribe(data =>{
+      this.loggedIn=data[0];
+      this.uname= data[1];
+    });
     console.log("Inside Welcome", this.loggedIn);
   }
 }
